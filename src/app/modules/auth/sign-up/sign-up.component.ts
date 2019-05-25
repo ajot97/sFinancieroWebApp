@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTooltip, MatSnackBar } from '@angular/material';
 import { AuthService } from '../auth.service';
 import {NgForm} from '@angular/forms';
-import {User } from '../../../Models/User';
+import {User } from 'src/app/Models/user';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
