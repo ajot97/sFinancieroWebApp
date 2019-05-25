@@ -1,0 +1,40 @@
+
+<form #userRegistrationForm="ngForm" >
+
+  <div class="container">
+    
+    <mat-card>
+    
+    <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="user.Email" placeholder="Email" #UserName="ngModel"  name="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="user.Password" matInput placeholder="Password" name="Password" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="user.FirstName" matInput placeholder="First Name" name="FirstName" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="user.LastName" matInput placeholder="Last Name" name="LastName" >
+  </mat-form-field>
+ 
+
+  <div class="row" *ngIf="roles" >
+    <ul>
+      <mat-label >Roles:</mat-label>
+      <div *ngFor="let item of roles;let i = index">
+        <mat-checkbox name="roles" type="checkbox" [id]="'roles-'+i" value="{{item.Id}}" [checked]="item.selected" (change)="updateSelectedRoles(i)" >{{item.Name}}</mat-checkbox>
+      </div>
+    </ul>
+  </div>
+
+  <br>
+    <button style="margin-bottom:5px;" mat-raised-button color="primary" (click)="signUp()" >Registrarse</button>
+    <button mat-raised-button color="primary" routerLink="/Auth/SignIn" routerLinkActive="active-link" >ó Iniciar Sesión</button>
+</mat-card>
+</div>
+</form>

@@ -1,0 +1,84 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <a mat-list-item routerLink="/Auth/SignIn" routerLinkActive="active-link" >LogIn</a>
+
+      <a  mat-list-item  [matMenuTriggerFor]="UsuarioEntidadMenu" >Modulo Usuario Endidad</a>
+        <mat-menu #UsuarioEntidadMenu="matMenu">
+          <button mat-menu-item   [matMenuTriggerFor]="GestionarClienteMenu" >Cliente</button>
+          <button mat-menu-item [matMenuTriggerFor]="GestionarTipoClienteMenu"  >Tipo de Cliente</button>
+        </mat-menu>
+
+          <mat-menu #GestionarClienteMenu="matMenu">
+            <button mat-menu-item  routerLink="/UsuarioEntidad" routerLinkActive="active-link" >Lista de clientes</button>
+            <button mat-menu-item routerLink="/UsuarioEntidad/addCliente" routerLinkActive="active-link" >Añadir nuevo cliente</button>
+          </mat-menu>
+
+          <mat-menu #GestionarTipoClienteMenu="matMenu">
+              <button mat-menu-item  routerLink="/UsuarioEntidad/TipoClientes" routerLinkActive="active-link" >Lista de tipos de clientes</button>
+              <button mat-menu-item routerLink="/UsuarioEntidad/addTipoCliente" routerLinkActive="active-link" >Añadir nuevo tipo de cliente</button>
+          </mat-menu>
+
+
+          <a  mat-list-item  [matMenuTriggerFor]="MovimientoCuentaMenu" >Movimiento de cuenta</a>
+            <mat-menu #MovimientoCuentaMenu="matMenu">
+                <button mat-menu-item   [matMenuTriggerFor]="GestionarAperturaDeCuentaMenu" >Gestionar Cuenta</button>
+                <button mat-menu-item [matMenuTriggerFor]="GestionarMonedaMenu"  >Gestionar Moneda</button>
+                <button mat-menu-item [matMenuTriggerFor]="GestionarMovimientoMenu"  >Gestionar Movimientos</button>
+                <button mat-menu-item   [matMenuTriggerFor]="GestionarChequeraMenu" >Gestionar Chequera</button>
+                <button mat-menu-item   [matMenuTriggerFor]="GestionarTarjetaMenu" >Gestionar Tarjeta</button>
+            </mat-menu>
+      
+            <mat-menu #GestionarAperturaDeCuentaMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/AperturaDeCuenta" routerLinkActive="active-link" >Apertura de cuenta</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/Cuentas" routerLinkActive="active-link" >Listado de cuentas</button>
+            </mat-menu>
+    
+            <mat-menu #GestionarMonedaMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/Monedas" routerLinkActive="active-link" >Lista de monedas</button>
+                <button mat-menu-item routerLink="/MovimientoCuenta/AddMoneda" routerLinkActive="active-link" >Añadir nueva moneda</button>
+            </mat-menu>       
+            <mat-menu #GestionarMovimientoMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link" >Realizar Deposito</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >Realizar Transferencia</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/Movimientos" routerLinkActive="active-link" >Lista de movimientos</button>
+            </mat-menu>       
+            <mat-menu #GestionarChequeraMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/Chequeras" routerLinkActive="active-link" >Lista de Chequeras</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/RegistrarChequera" routerLinkActive="active-link" >Registrar Chequera</button>
+            </mat-menu>       
+            <mat-menu #GestionarTarjetaMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/AsignarTarjeta" routerLinkActive="active-link" >Asignar Tarjeta</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/HabilitarTarjeta" routerLinkActive="active-link" >Habilitar Tarjeta</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/RegistrarTipoDeTarjeta" routerLinkActive="active-link" >Registrar tipo de Cuenta</button>
+            </mat-menu>       
+
+<!--
+
+  <a mat-list-item routerLink="/UsuarioEntidad" routerLinkActive="active-link">Gestionr Cliente</a>
+  <a mat-list-item routerLink="/UsuarioEntidad/addCliente" routerLinkActive="active-link">Gestionar Cuenta</a>
+  <a mat-list-item href="#">Gestionar Moneda</a>
+-->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>sFinancieroWebApp</span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

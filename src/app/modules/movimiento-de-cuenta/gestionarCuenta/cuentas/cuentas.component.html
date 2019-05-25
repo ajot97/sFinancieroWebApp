@@ -1,0 +1,14 @@
+<div *ngFor="let cuenta of cuentas">
+  <mat-card>
+<mat-card-title>
+
+  <div>nro de cuenta: {{cuenta.nroCuenta}}</div>
+</mat-card-title>
+
+<div>Saldo: {{cuenta.saldo}}</div>
+<div>Fecha De Apertura: {{cuenta.fechaApertura |date:'fullDate'}}</div>
+<div>idMoneda: {{cuenta.idMoneda}}</div>
+<div>idTipoCuenta: {{cuenta.idTipoCuenta}}</div>
+<div>idCliente: {{cuenta.idcliente}}</div>
+  </mat-card>
+</div>

@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-form-field>
+      <mat-label>Abreviatura</mat-label>
+      <input matInput [(ngModel)]="moneda.abreviatura" matInput placeholder="Abreviatura">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre de Moneda</mat-label>
+      <input matInput [(ngModel)]="moneda.nombre" matInput placeholder="Nombre de la moneda">
+    </mat-form-field>
+    <!--
+    <mat-form-field>
+      <mat-label>Apellido Materno</mat-label>
+      <input matInput [(ngModel)]="persona.materno" matInput placeholder="Apellido Materno">
+    </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tipo de Cliente</mat-label>
+        <mat-select [(value)]="tipoClienteSeleccionado" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let tipoCliente of tipoClientes" [value]="tipoCliente.id">
+            {{tipoCliente.categoria}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    -->
+  
+      <div *ngIf='id!="";else buttonRegistrar;' >
+  
+        <button mat-raised-button color="primary" (click)="actualizarMoneda()" >actualizar Moneda</button>
+      </div>
+      <ng-template #buttonRegistrar>
+  
+        <button mat-raised-button color="primary" (click)="addMoneda()" >Registrar Moneda</button>
+      </ng-template>
+  
+  </mat-card>
+  

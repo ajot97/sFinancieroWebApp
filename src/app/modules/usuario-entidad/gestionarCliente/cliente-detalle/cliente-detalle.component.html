@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>
+    {{cliente.persona.nombre}}{{cliente.persona.paterno}}{{cliente.persona.materno}}
+  </mat-card-title>
+  <mat-card-content>
+    <div>Fecha de Registro: {{cliente.fechaReg | date:'fullDate'}} </div>
+    <div>Carnet de Identidad: {{cliente.persona.ci}} </div>
+    <div>Sexo: {{cliente.persona.sexo}} </div>
+    <div>Direccion: {{cliente.persona.direccion}} </div>
+    <div>Fecha de Nacimiento: {{cliente.persona.fecha | date:'fullDate'}} </div>
+
+  </mat-card-content>
+</mat-card>

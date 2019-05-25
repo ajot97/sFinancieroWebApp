@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-form-field>
+        <mat-label>Nro de cuenta 1</mat-label>
+        <input  matInput [(ngModel)]="nroCuenta1" matInput placeholder="nro de cuenta">
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Nro de cuenta 2</mat-label>
+          <input  matInput [(ngModel)]="nroCuenta2" matInput placeholder="nro de cuenta 2">
+        </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Monto</mat-label>
+        <input  matInput [(ngModel)]="monto" matInput placeholder="Monto">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Moneda</mat-label>
+        <mat-select [(value)]="monedaSeleccionada" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let moneda of monedas" [value]="moneda.id">
+              {{moneda.abreviatura}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      <mat-form-field>
+        <mat-label>descripcion</mat-label>
+        <input  matInput [(ngModel)]="descripcion" matInput placeholder="descripcion">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>oficina</mat-label>
+        <input  matInput [(ngModel)]="oficina" matInput placeholder="oficina">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>ubicacion</mat-label>
+        <input  matInput [(ngModel)]="ubicacion" matInput placeholder="ubicacion">
+      </mat-form-field>
+      
+        
+      <button mat-raised-button color="primary" (click)="Transferir()" >Transferir Fondos</button>  
+              
+              
+              
+      
+</mat-card>

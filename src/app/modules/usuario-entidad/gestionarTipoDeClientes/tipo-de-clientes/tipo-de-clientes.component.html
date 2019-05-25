@@ -1,0 +1,21 @@
+<div *ngFor="let tipoCliente of tiposDeClientes">
+
+  <mat-card style="margin-bottom:10px;" >
+    <mat-card-content>
+
+      <div>Tipo de cliente: {{tipoCliente.categoria}}</div>
+      <div>Descripcion: {{tipoCliente.descripcion}}</div>
+      
+    </mat-card-content>
+
+    <mat-card-actions>
+      <!--
+
+        <button mat-raised-button routerLink='/UsuarioEntidad/detalleCliente/{{tipoCliente.id}}' routerLinkActive="active-link">Detalles</button>
+      -->
+        <button mat-raised-button color="accent" >Editar</button>
+        <button mat-raised-button color="warn" (click)='eliminarTipoCliente(tipoCliente.id)'>Eliminar</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</div>

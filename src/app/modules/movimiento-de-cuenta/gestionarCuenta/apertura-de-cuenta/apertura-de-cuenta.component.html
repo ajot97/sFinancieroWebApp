@@ -1,0 +1,71 @@
+<div class="formContainer">
+
+    <h2> APERTURA DE CUENTA </h2>
+    <mat-card>
+      <mat-form-field>
+        <mat-label>idCliente</mat-label>
+        
+          <input [disabled]='disableIdCliente' matInput [(ngModel)]="cliente.id" matInput placeholder=" id del cliente">
+        
+        
+      </mat-form-field>
+      <!--
+      <mat-form-field>
+        <mat-label>FechaApertura</mat-label>
+        <input matInput [(ngModel)]="cuenta.FechaApertura" matInput placeholder="Fecha Apertura">
+      </mat-form-field>
+
+
+
+
+      <mat-form-field>
+        <mat-label>idTipoCuenta</mat-label>
+        <input matInput [(ngModel)]="cuenta.idTipoCuenta" matInput placeholder="id del Tipo de Cuenta">
+      </mat-form-field>
+
+-->
+      <mat-form-field>
+          <mat-label>Tipo de Cuenta</mat-label>
+          <mat-select [(value)]="tipoCuentaSeleccionado" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let tipoCuenta of tipoCuentas" [value]="tipoCuenta.id">
+                {{tipoCuenta.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      <mat-form-field>
+          <mat-label>Moneda</mat-label>
+          <mat-select [(value)]="monedaSeleccionada" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let moneda of monedas" [value]="moneda.id">
+                {{moneda.abreviatura}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+      <mat-form-field>
+        <mat-label>NroCuenta</mat-label>
+        <input matInput [(ngModel)]="cuenta.nroCuenta" matInput placeholder="Numero de Cuenta">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Saldo</mat-label>
+        <input matInput [(ngModel)]="cuenta.saldo" matInput placeholder="Saldo ">
+      </mat-form-field>
+     
+      
+    
+        <div *ngIf='actualizar;else buttonRegistrar;' >
+          <button mat-raised-button color="primary" (click)="actualizarCuenta()" >actualizar Cuenta</button>
+        </div>
+        <ng-template #buttonRegistrar>
+          <button mat-raised-button color="primary" (click)="RegistrarCuenta()" >Registrar Cuenta</button>
+        </ng-template>
+        
+        
+          
+    </mat-card>
+    
+    </div>
+    

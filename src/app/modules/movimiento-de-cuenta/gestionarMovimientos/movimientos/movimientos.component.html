@@ -1,0 +1,20 @@
+<div *ngFor="let movimiento of movimientos">
+<mat-card>
+  <mat-card-title>
+   id: {{movimiento.id}}
+  </mat-card-title>
+  <div>
+  descripcion: {{movimiento.descripcion}}
+  </div>
+  <div>
+   fecha : {{movimiento.fechaHora | date:'fullDate'}}
+  </div>
+  <div>
+   monto: {{movimiento.monto}}
+  </div>
+  <div>
+   idCuenta: {{movimiento.idCuenta}}
+  </div>
+</mat-card>
+
+</div>

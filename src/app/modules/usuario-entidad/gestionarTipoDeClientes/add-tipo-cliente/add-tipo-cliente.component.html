@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input matInput [(ngModel)]="tipoCliente.categoria" matInput placeholder="Categoria">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <input matInput [(ngModel)]="tipoCliente.descripcion" matInput placeholder="Descripcion">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTipoCliente()" >add tipo de cliente</button>
+</mat-card>
