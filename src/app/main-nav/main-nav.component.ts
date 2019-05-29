@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../modules/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-nav',
@@ -14,7 +16,17 @@ export class MainNavComponent {
     .pipe(
       map(result => result.matches)
     );
+      roles:string[];
+  constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService,private router:Router) {
+    if(!this.authService.isLogged()){
+      this.router.navigateByUrl('/Auth/SignIn');
+    }else{
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+    }
+  }
+
+logOut(){
+  this.authService.logOut();
+}
 
 }

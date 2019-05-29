@@ -7,7 +7,7 @@
     <mat-nav-list>
 
       <a mat-list-item routerLink="/Auth/SignIn" routerLinkActive="active-link" >LogIn</a>
-
+      <button mat-menu-item (click)="logOut()" >LogOut</button>
       <a  mat-list-item  [matMenuTriggerFor]="UsuarioEntidadMenu" >Modulo Usuario Endidad</a>
         <mat-menu #UsuarioEntidadMenu="matMenu">
           <button mat-menu-item   [matMenuTriggerFor]="GestionarClienteMenu" >Cliente</button>

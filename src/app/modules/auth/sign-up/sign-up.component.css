@@ -11,5 +11,5 @@ mat-card{
     
     max-width: 350px;
     max-height: 500px;
-    
+    flex-wrap: wrap;
 }

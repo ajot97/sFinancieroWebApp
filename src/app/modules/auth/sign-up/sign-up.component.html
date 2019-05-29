@@ -1,25 +1,29 @@
+<div class="container">
 
-<form #userRegistrationForm="ngForm" >
+  <mat-card>
+<form #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)" >
 
-  <div class="container">
     
-    <mat-card>
     
     <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input matInput [(ngModel)]="user.Email" placeholder="Email" #UserName="ngModel"  name="Email">
+    <mat-label>UserName</mat-label>
+    <input matInput [(ngModel)]="user.UserName" #UserName="ngModel" placeholder="UserName" #UserName="ngModel"  name="UserName" required>
+  </mat-form-field>
+    <mat-form-field>
+    <input matInput class="validate" [(ngModel)]="user.Email" #Email="ngModel" placeholder="Email" #UserName="ngModel"  name="Email" [pattern]="emailPattern" required>
+    <mat-error *ngIf="Email.invalid">{{getErrorMessage(userRegistrationForm)}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input matInput [(ngModel)]="user.Password" matInput placeholder="Password" name="Password" >
+    <input type="password" class="validate" matInput [(ngModel)]="user.Password" #Password="ngModel" matInput placeholder="Password" name="Password" minlength="3" required >
+    <mat-label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required Field!':'Minimun 3 characters needed'):''">Password</mat-label>
   </mat-form-field>
   <mat-form-field>
     <mat-label>First Name</mat-label>
-    <input matInput [(ngModel)]="user.FirstName" matInput placeholder="First Name" name="FirstName" >
+    <input matInput [(ngModel)]="user.FirstName" matInput placeholder="First Name" name="FirstName" required >
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Last Name</mat-label>
-    <input matInput [(ngModel)]="user.LastName" matInput placeholder="Last Name" name="LastName" >
+    <mat-label  >Last Name</mat-label>
+    <input matInput [(ngModel)]="user.LastName" matInput placeholder="Last Name" name="LastName" required >
   </mat-form-field>
  
 
@@ -33,8 +37,9 @@
   </div>
 
   <br>
-    <button style="margin-bottom:5px;" mat-raised-button color="primary" (click)="signUp()" >Registrarse</button>
+    <button [disabled]="!userRegistrationForm.valid" style="margin-bottom:5px;" type="submit" mat-raised-button color="primary" >Registrar</button>
+   
     <button mat-raised-button color="primary" routerLink="/Auth/SignIn" routerLinkActive="active-link" >ó Iniciar Sesión</button>
+  </form>
 </mat-card>
 </div>
-</form>

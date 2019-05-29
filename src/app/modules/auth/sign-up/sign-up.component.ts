@@ -3,6 +3,7 @@ import { MatTooltip, MatSnackBar } from '@angular/material';
 import { AuthService } from '../auth.service';
 import {NgForm} from '@angular/forms';
 import {User } from 'src/app/Models/user';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -13,56 +14,74 @@ export class SignUpComponent implements OnInit {
   password = '';
   confirmPassword = '';
   roles: any[];
-user:User;
-
-  constructor(private authService: AuthService, private SnackBar: MatSnackBar) { }
+user: User;
+emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+  constructor(private authService: AuthService, private SnackBar: MatSnackBar,private router: Router) { }
 
   ngOnInit() {
 this.resetForm();
 
-    this.authService.getAllRoles().subscribe(
-      (data:any[]) => {
-        data.forEach(obj=>{obj.selected=false});
+this.authService.getAllRoles().then(
+      (data: any[]) => {
+        data.forEach(obj => {obj.selected = false;});
         this.roles = data;
-        
+
       }
-    )
+    );
   }
-resetForm(form?: NgForm){
-if(form!=null){
+resetForm(form?: NgForm) {
+if (form != null) {
   form.reset();
-}else{
-  this.user={
+} else {
+  this.user = {
     UserName: '',
     Password: '',
     Email: '',
     FirstName: '',
     LastName: '',
-    Roles:[]
-    }
-    if(this.roles)
-    {
-      this.roles.map(x=>x.selected=false);
+    Roles: []
+    };
+  if (this.roles) {
+      this.roles.map(x => x.selected = false);
     }
 }
 }
-updateSelectedRoles(index){
+updateSelectedRoles(index) {
   this.roles[index].selected = !this.roles[index].selected;
 }
-  signUp() {
-    var x= this.roles.filter(x=>x.selected).map(y=>y.Name);
-    this.authService.registerUser(this.user,x).then(val => {
+  OnSubmit(form : NgForm) {
+    let x = this.roles.filter(x => x.selected).map(y => y.Name);
+    this.authService.registerUser(form.value,x).then((val) => {
       console.log(val);
-      this.resetForm();
-      this.SnackBar.open('se registro correctamente', 'ok', {duration: 3000});
-    }).catch(e=>{
-      this.SnackBar.open(e['error'].ExceptionMessage,':/',{duration: 1000});
-    });
-    
-  }
+      this.authService.signIn(this.user.UserName,this.user.Password).then(val=>{
+        sessionStorage.setItem("accessToken",val["access_token"]);
+        console.log(val["UserName"]);
+        sessionStorage.setItem('username', val["userName"]);
+        this.authService.getRolesByUser(this.user.UserName).then(val=>{
+          sessionStorage.setItem("roles",val.toString());
+        });
+        
+      })
+  
+        this.router.navigateByUrl('/');
 
 
-  OnSubmit(form: NgForm){
-   
+
+
+      this.resetForm(form);
+      this.SnackBar.open('se registro correctamente', ':)', {duration: 3000});
+      }).catch(reason=>{
+        this.SnackBar.open(reason.Errors[0], ':(', {duration: 3000});
+    } );
+
   }
+  getErrorMessage(form?: NgForm) {
+    if (form != null){
+
+      return form.hasError('required') ? 'You must enter a value' :
+      form.hasError('email') ? 'Not a valid email' :
+      '';
+    }
+  }
+
 }

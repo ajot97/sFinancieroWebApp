@@ -19,6 +19,13 @@ export class SignInComponent implements OnInit {
   signIn() {
     this.authService.signIn(this.username, this.password).then(val => {
       sessionStorage.setItem('accessToken', val['access_token']);
+      sessionStorage.setItem('username', this.username);
+      this.authService.getRolesByUser(this.username).then(val=>{
+        sessionStorage.setItem('roles', 
+        val.toString());
+      })
+
+
       this.router.navigateByUrl('/');
       this.snackBar.open('Se inicio Sesion Correctamente', 'ok', {duration: 3000 });
     }).catch(e => {
